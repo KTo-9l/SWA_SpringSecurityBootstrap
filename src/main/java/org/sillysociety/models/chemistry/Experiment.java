@@ -9,19 +9,16 @@ public class Experiment {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="experiment_id", nullable = false)
     private Integer experiment_id;
-    @Column(name="experiment_name")
+    @Column(name="experiment_name", nullable = false)
     private String experiment_name;
-    @Column(name="experiment_status")
+    @Column(name="experiment_status", nullable = false)
     private String experiment_status;
-    @Column(name="brigade_id")
-    private Integer brigade_id;
 
     public Experiment() {}
-    public Experiment(Integer experiment_id, String experiment_name, String experiment_status, Integer brigade_id) {
+    public Experiment(Integer experiment_id, String experiment_name, String experiment_status) {
         this.experiment_id = experiment_id;
         this.experiment_name = experiment_name;
         this.experiment_status = experiment_status;
-        this.brigade_id = brigade_id;
     }
 
     public Integer getExperiment_id() {
@@ -46,14 +43,6 @@ public class Experiment {
 
     public void setExperiment_status(String experiment_status) {
         this.experiment_status = experiment_status;
-    }
-
-    public Integer getBrigade_id() {
-        return brigade_id;
-    }
-
-    public void setBrigade_id(Integer brigade_id) {
-        this.brigade_id = brigade_id;
     }
 
     @Override

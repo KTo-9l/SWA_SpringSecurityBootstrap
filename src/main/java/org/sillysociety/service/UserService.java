@@ -13,4 +13,5 @@ public interface UserService extends UserDetailsService {
     MyUser updateUser(MyUser myUser);
     MyUser getByEmail(String email);
     Boolean existsByLogin(String login);
+    void safeDelete(MyUser myUser);
 }

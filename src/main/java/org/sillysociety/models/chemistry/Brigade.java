@@ -9,9 +9,9 @@ public class Brigade {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="brigade_id", nullable = false)
     private Integer brigade_id;
-    @Column(name="member_first")
+    @Column(name="member_first", nullable = false)
     private String member_first;
-    @Column(name="member_second")
+    @Column(name="member_second", nullable = false)
     private String member_second;
 
     public Brigade() {}

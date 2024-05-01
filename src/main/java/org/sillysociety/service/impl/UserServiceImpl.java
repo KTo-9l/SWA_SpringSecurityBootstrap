@@ -1,9 +1,9 @@
 package org.sillysociety.service.impl;
 
+import org.sillysociety.config.MyUserDetails;
 import org.sillysociety.models.swa.MyUser;
 import org.sillysociety.repository.swa.UserRepository;
 import org.sillysociety.service.UserService;
-import org.sillysociety.config.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -57,5 +57,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Boolean existsByLogin(String login) {
         return userRepository.existsByLogin(login);
+    }
+
+    @Override
+    public void safeDelete(MyUser myUser) {
+        userRepository.softDelete(myUser.getId());
+        userRepository.save(myUser);
     }
 }

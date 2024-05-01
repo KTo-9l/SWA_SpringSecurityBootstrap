@@ -22,6 +22,15 @@ public class MyUser {
     @Column(name = "deleted", nullable = false)
     private Boolean deleted = false;
 
+    public MyUser(String login, String password, String email, String role, Boolean deleted) {
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.role = role;
+        this.deleted = deleted;
+    }
+    public MyUser() {}
+
     public Integer getId() {
         return id;
     }

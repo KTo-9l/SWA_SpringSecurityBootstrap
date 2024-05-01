@@ -4,8 +4,8 @@ import org.sillysociety.models.swa.MyUser;
 import org.sillysociety.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class RegisterPageController {
@@ -13,16 +13,15 @@ public class RegisterPageController {
     private UserService userService;
 
     @PostMapping("register")
-    public String registerPost(
-            @RequestParam String login, @RequestParam String pass, @RequestParam String email) {
-        if (userService.loadUserByUsername(login) != null || userService.getByEmail(email) != null) {
+    public String registerPost(@ModelAttribute MyUser user) {
+        if (user.getRole().isEmpty()) user.setRole("user");
+        if (user.getLogin().isEmpty() || user.getPassword().isEmpty() || user.getEmail().isEmpty()) {
+            return "redirect:/register?error";
+        }
+        if (userService.loadUserByUsername(user.getLogin()) != null || userService.getByEmail(user.getEmail()) != null) {
             return "redirect:/register?error";
         } else {
-            MyUser newUser = new MyUser();
-            newUser.setLogin(login);
-            newUser.setPassword(pass);
-            newUser.setEmail(email);
-            userService.addUser(newUser);
+            userService.addUser(user);
             return "redirect:/login";
         }
     }

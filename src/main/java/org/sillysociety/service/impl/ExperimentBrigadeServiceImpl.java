@@ -1,7 +1,11 @@
 package org.sillysociety.service.impl;
 
+import org.sillysociety.models.chemistry.Brigade;
+import org.sillysociety.models.chemistry.Experiment;
 import org.sillysociety.models.chemistry.ExperimentBrigade;
+import org.sillysociety.repository.chemistry.BrigadeRepository;
 import org.sillysociety.repository.chemistry.ExperimentBrigadeRepository;
+import org.sillysociety.repository.chemistry.ExperimentRepository;
 import org.sillysociety.service.ExperimentBrigadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +16,10 @@ import java.util.List;
 public class ExperimentBrigadeServiceImpl implements ExperimentBrigadeService {
     @Autowired
     private ExperimentBrigadeRepository experimentBrigadeRepository;
+    @Autowired
+    private BrigadeRepository brigadeRepository;
+    @Autowired
+    private ExperimentRepository experimentRepository;
 
     @Override
     public ExperimentBrigade addExperimentBrigade(ExperimentBrigade brigade) {
@@ -34,7 +42,17 @@ public class ExperimentBrigadeServiceImpl implements ExperimentBrigadeService {
     }
 
     @Override
-    public ExperimentBrigade updateExperimentBrigade(ExperimentBrigade brigade) {
-        return experimentBrigadeRepository.save(brigade);
+    public ExperimentBrigade updateExperimentBrigade(ExperimentBrigade experimentBrigade) {
+        return experimentBrigadeRepository.save(experimentBrigade);
+    }
+
+    @Override
+    public Brigade addBrigade(Brigade brigade) {
+        return brigadeRepository.save(brigade);
+    }
+
+    @Override
+    public Experiment addExperiment(Experiment experiment) {
+        return experimentRepository.save(experiment);
     }
 }

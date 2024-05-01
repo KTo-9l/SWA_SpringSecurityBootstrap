@@ -1,4 +1,4 @@
-package org.sillysociety.controllers;
+package org.sillysociety.controllers.admin;
 
 import org.sillysociety.config.MyUserDetails;
 import org.sillysociety.models.swa.MyUser;
