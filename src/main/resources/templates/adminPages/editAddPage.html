@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <th:block th:switch="${user.login}">
+        <title th:case="null">Add page</title>
+        <title th:case="*">Edit page</title>
+    </th:block>
+
+    <title>Edit user</title>
+</head>
+<body>
+    <form th:action="${user.login} == null ? 'add' : 'edit?id=' + ${user.id}" method="post">
+        <th:block th:if="${user.login} != null">
+            <input type="hidden" name="id" th:value="${user.id}">
+        </th:block>
+        <div th:if="${param.error}">Something wrong</div>
+
+        <label for="login">Login</label>
+        <input type="text" name="login" id="login" th:placeholder="${user.login}"><br>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" th:placeholder="${user.password}"><br>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" th:placeholder="${user.email}"><br>
+
+        <label for="role">Role</label>
+        <input type="text" name="role" id="role" th:placeholder="${user.role}"><br>
+
+        Deleted?
+        <div>
+            <input  type="radio" id="deleted" name="deleted" value="true" th:checked="${user.deleted}"/>
+            <label for="deleted">Yes</label>
+        </div>
+        <div>
+            <input type="radio" id="notDeleted" name="deleted" value="false" th:checked="!${user.deleted}"/>
+            <label for="notDeleted">No</label>
+        </div>
+
+        <input type="submit" th:value="${user.login} == null ? 'Add user' : 'Edit user'">
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <style>
+        .myH1 {
+            display: block;
+            font-size: 2em;
+            margin-block-start: 0.67em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0;
+            margin-inline-end: 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="myH1">
+        <span>Welcome to your profile, </span>
+        <span th:text="${username}"></span>
+        <span>!</span>
+    </div>
+
+    <p style="font-size: 24px">You can do next things:</p>
+    <ul>
+        <li>
+            <a href="/">Go to main page</a>
+        </li>
+        <li>
+            <a href="/logout">Log Out</a>
+        </li>
+    </ul>
+
+    <table border="20px">
+        <tr>
+            <th>Exp Id</th>
+            <th>Exp Name</th>
+            <th>Status</th>
+            <th>Br Id</th>
+            <th>1st</th>
+            <th>2nd</th>
+        </tr>
+        <tr th:each="entity : ${exp_br}">
+            <td th:text="${entity.experiment_id.experiment_id}"></td>
+            <td th:text="${entity.experiment_id.experiment_name}"></td>
+            <td th:text="${entity.experiment_id.experiment_status}"></td>
+            <td th:text="${entity.brigade_id.brigade_id}"></td>
+            <td th:text="${entity.brigade_id.member_first}"></td>
+            <td th:text="${entity.brigade_id.member_second}"></td>
+        </tr>
+    </table>
+</body>
+</html>

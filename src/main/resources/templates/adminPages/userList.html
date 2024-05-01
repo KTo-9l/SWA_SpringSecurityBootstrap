@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <style>
+        .myH1 {
+            display: block;
+            font-size: 2em;
+            margin-block-start: 0.67em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0;
+            margin-inline-end: 0;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Here list of all users, registered on our 'web-site', hah</h1>
+    <p style="font-size: 24px">You can do next things:</p>
+    <ul>
+        <li>
+            <a th:href="@{.}">Back to admin page</a>
+        </li>
+        <li>
+            <a th:href="@{users/add}">Add new user</a>
+        </li>
+        <li>
+            <a href="/">Go to main page</a>
+        </li>
+    </ul>
+
+    <table border="20px">
+        <tr>
+            <th>ID</th>
+            <th>Login</th>
+            <th>Password</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Deleted</th>
+            <th>Action</th>
+        </tr>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.login}"></td>
+            <td th:text="${user.password}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.role}"></td>
+            <td th:text="${user.deleted}"></td>
+            <td>
+                <a th:href="@{users/edit(id=${user.id})}">edit</a>
+                <a th:href="@{users/delete(id=${user.id})}">delete</a>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
